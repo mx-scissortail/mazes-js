@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+    <title>Mazes</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+	<script type="text/javascript" src="mazes.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			height: 100vh;
+			width: 100vw;
+			background: darkslategray;
+        }
+
+		canvas {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-ms-transform: translateY(-50%, -50%);
+			transform: translateY(-50%, -50%);
+		}
+    </style>
+</head>
+<body>
+
+<canvas id="maze-canvas"> </canvas>
+<script>
+
+	var canvas = document.getElementById("maze-canvas"),
+		rect = document.body.getBoundingClientRect();
+		colorTest = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i,
+		params = {};
+
+	window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) { params[key] = value; });
+
+	var thickness = parseInt(params['thickness']),
+		algorithm = parseInt(params['algorithm']),
+		speed = parseInt(params['speed']),
+		fg = '#' + params['fg'],
+		bg = '#' + params['bg'];
+
+	if (isNaN(thickness) || thickness < 1 || Math.floor(rect.width/(thickness * 2)) < 1 || Math.floor(rect.height/(thickness * 2)) < 1) {
+		console.log("No valid thickness specified, using default value: random in [1, 2, 4, 8, 16]");
+		thickness = _.sample([1, 2, 4, 8, 16]);
+	}
+
+	if (isNaN(algorithm) || algorithm < 0 || algorithm > 5) {
+		console.log("No valid algorithm specified, using default value: random in [0, 1, 2, 3, 4, 5]");
+		algorithm = _.sample([0, 1, 2, 3, 4, 5]);
+	}
+
+	if (isNaN(speed) || speed < 1) {
+		console.log("No valid speed specified, using default value: 15");
+		speed = 15;
+	}
+
+	if (!colorTest.test(fg)) {
+		console.log("No valid foreground color specified, using default value: #708090");
+		fg = '#708090';
+	}
+
+	if (!colorTest.test(bg)) {
+		console.log("No valid background color specified, using default value: #111111");
+		bg = '#151515';
+	}
+
+	var w = Math.floor(rect.width/(thickness * 2)) * 2,
+		h = Math.floor(rect.height/(thickness * 2)) * 2;
+
+	makeMaze(canvas, w, h, thickness, speed, algorithm, bg, fg);
+</script>
+</body>
+</html>

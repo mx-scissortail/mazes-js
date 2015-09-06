@@ -1,0 +1,16 @@
+{
+    "name": "mazes.js",
+    "version": "1.0.0",
+    "description": "An HTML5 maze generator",
+    "license" : "MIT",
+    "author": {
+        "name": "Jon Skyler Nelson"
+    },
+    "scripts": {
+        "prebuild": "cp -rf src/index.html build/",
+        "build": "babel src/js/mazes.js --out-file build/mazes.js"
+    },
+    "devDependencies": {
+        "babel": "^5.8.21"
+    }
+}
