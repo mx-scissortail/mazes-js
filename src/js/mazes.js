@@ -88,8 +88,8 @@ function makeMaze (canvas, width, height, thickness, speed, algorithm, backgroun
 
 		} while (bitmap.test(x, y));
 
-		bitmap.fill(x, y);	// fill in the selected space
-		bitmap.fill(ox, oy);	// and the one that bridges it to the one it branched from
+		bitmap.fill(ox, oy);	// fill the space that bridges the selected space to the one it branched from
+		bitmap.fill(x, y);	// and fill in the selected space
 
 		// update the list of spaces that we can expand into
 
