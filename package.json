@@ -10,7 +10,7 @@
         "prebuild": "cp -rf src/index.html build/",
         "build": "babel src/js/mazes.js --out-file build/mazes.js"
     },
-    "devDependencies": {
+    "dependencies": {
         "babel": "^5.8.21"
     }
 }

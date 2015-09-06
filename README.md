@@ -10,7 +10,7 @@ mazes.js is written using es6 syntax and is built using babel, with a simple npm
 
 ```sh
 # cd to the project directory
-npm install --dev
+npm install
 npm run build
 ```
 
