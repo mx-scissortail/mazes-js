@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mazes</title>
+<style type="text/css">
+/*
+  Credit to http://laemeur.sdf.org/fonts/ for the More Perfect DOS VGA font used here.
+*/
+@font-face {
+  font-family: "IBM-VGA9";
+  src: url(./MorePerfectDOSVGA.ttf) format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: "IBM-VGA9";
+  font-size: 16px;
+  line-height: 16px;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #f0f0ff;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+canvas {
+  border: 8px solid #ffca4b;
+}
+
+div.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-left: 4ch;
+}
+
+label {
+  display: inline-block;
+  width: 10ch;
+  text-align: right;
+}
+
+div.slider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+div.slider > span {
+  width: 4ch;
+  text-align: left;
+}
+
+input[type=range] {
+  margin-left: 1ch;
+  margin-right: 1ch;
+}
+
+div#canvas-container {
+  flex-grow: 1;
+  margin: 4ch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.description {
+  margin: 2ch 0;
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.description > div {
+  opacity: 0.5;
+}
+
+h1 {
+  margin: 4ch 0;
+  color: #ffca4b;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+</style>
+</head>
+<body>
+<div class="controls">
+  <h1>M A Z E S . J S</h1>
+  <div class="slider">
+    <label for="scale-control">Scale</label>
+    <input id="scale-control" type="range" min="1" max="5" step="1">
+    <span id="scale-counter">1</span>
+  </div>
+  <div class="slider">
+    <label for="speed-control">Speed</label>
+    <input id="speed-control" type="range" min="1" max="100" step="1">
+    <span id="speed-counter">15</span>
+  </div>
+  <div class="slider">
+    <label for="algorithm-control">Algorithm</label>
+    <input id="algorithm-control" type="range" min="0" max="5" step="1">
+    <span id="algorithm-counter">0</span>
+  </div>
+  <div class="description">
+    <label for="algorithm-queue">Queue</label>
+    <div id="algorithm-queue"></div>
+  </div>
+  <div class="description">
+    <label for="algorithm-sample">Sample</label>
+    <div id="algorithm-sample"></div>  
+  </div>
+  <button id="generate">Restart</button>
+</div>
+<div id="canvas-container">
+  <canvas id="maze-canvas"> </canvas>
+</div>
+<script src="mazes.js" type="module"></script>
+</body>
+</html>
